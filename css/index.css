@@ -1,0 +1,152 @@
+/* Goblal */
+:root {
+    --primary-color: #fb7d00;
+    --dark-gray: #4b4e5c;
+    --bdark-gray: #353741;
+    --income: #12a454;
+    --expense: #e92929;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f2f5;
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    width: min(90vw, 800px);
+    margin: auto;
+    margin-bottom: 7rem;
+}
+
+/* Titles */
+h2 {
+    margin-top: 3.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--dark-gray);
+
+    font-weight: 600;
+}
+
+/* Header */
+header {
+    background: rgb(207,88,4);
+    background: linear-gradient(0deg, rgba(207,88,4,1) 0%, rgba(251,120,0,1) 60%, rgba(251,130,0,1) 100%);
+    padding: 2rem 0rem 5.5rem;
+    text-align: center;
+}
+
+#logo {
+    margin-top: -2rem;
+    height: 200px;
+    width: 200px;
+}
+
+#logo:hover {
+    cursor: pointer;
+}
+
+/* Balance */
+#balance {
+    margin-top: -7rem;
+}
+
+#balance h2 {
+    color: #fff;
+    margin-top: 0;
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 0.25rem;
+
+    margin-bottom: 2rem;
+
+    color: var(--dark-gray);
+    box-shadow: -4px 2px 5px -1px rgba(0, 0, 0, 0.116);
+}
+
+.card h3{
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.card p {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 3rem;
+    margin-top: 0.4rem;
+}
+
+.card.total {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Table */
+#data-table {
+    width: 100%;
+    border-spacing: 0 0.5rem;
+    color: var(--dark-gray);
+    
+}
+
+table thead tr th:first-child,
+table tbody tr td:first-child{
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table th {
+    background: #fff;
+    opacity: 0.6;
+
+    font-weight: 600;
+    padding: 1rem 2rem;
+    text-align: left;
+}
+
+table td{
+    background: #fff;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    
+}
+
+table tbody tr {
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+table tbody tr:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+td.description {
+    color: var(--bdark-gray)
+}
+
+td.income {
+    color: var(--income);
+}
+
+td.expense {
+    color: var(--expense);
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    background: var(--primary-color);
+    padding: 3rem 0 2rem;
+    color: #fff;
+}
