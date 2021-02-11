@@ -14,28 +14,40 @@
 
 <body>
     <header>
-            <img src="./images/logo.png" id="logo">
+            <img src="./assets/logo.png" alt="Logo High Finance" id="logo" href="./index.html">
     </header>
 
     <main class="container">
         <section id="balance">
-            <h2>Balanço</h2>
+            <h2 class="sr-only">Balanço</h2>
             <div class="card">
-                <h3>Entradas</h3>
-                <p>R$ 1350,00</p>
+                <h3>
+                    <span>Entradas</span>
+                    <img src="./assets/income.svg" alt="Imagem de entradas">
+                </h3>
+                <p id="incomeDisplay">R$ 1350,00</p>
             </div>
             <div class="card">
-                <h3>Saídas</h3>
-                <p>R$ 687,00</p>
+                <h3>
+                    <span>Saídas</span>
+                    <img src="./assets/expense.svg" alt="Imagem de entradas">
+                </h3>
+                <p id="expenseDisplay">R$ 687,00</p>
             </div>
             <div class="card total">
-                <h3>Total</h3>
-                <p>R$ 663,00</p>
+                <h3>
+                    <span>Total</span>
+                    <img src="./assets/total.svg" alt="Imagem de entradas">
+                </h3>
+                <p id="totalDisplay">R$ 663,00</p>
             </div>
         </section>
 
         <section id="transactions">
-            <h2>Transações</h2>
+
+            <a href="#" class="button new" onclick="Modal.toggle()">+ Nova Transação</a>
+
+            <h2 class="sr-only">Transações</h2>
 
             <table id="data-table">
                 <thead>
@@ -43,33 +55,66 @@
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+<!--                  <tr>
                         <td class="description">Luz</td>
                         <td class="expense">- R$ 500,00</td>
                         <td class="date">25/01/2021</td>
+                        <td><img src="./assets/minus.svg" alt=""></td>
                     </tr> 
                     <tr>
                         <td class="description">Faculdade</td>
                         <td class="expense">- R$ 187,00</td>
                         <td class="date">16/01/2021</td>
+                        <td><img src="./assets/minus.svg" alt=""></td>
                     </tr>
                     <tr>
                         <td class="description">Freelancer</td>
                         <td class="income">R$ 1350,00</td>
                         <td class="date">15/01/2021</td>
-                    </tr>
+                        <td><img src="./assets/minus.svg" alt=""></td>
+                    </tr> -->
                 </tbody>
             </table>
         </section>
     </main>
 
+    <div class="modal-overlay">
+        <div class="modal">
+            <div id="form">
+                <h2>Nova Transação</h2>
+                <form action="">
+                    <div class="input-group">
+                        <label class="sr-only"for="description">Descrição</label>
+                        <input type="text" id="description" name="description" value="" placeholder="Descrição"/>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="sr-only"for="amount">Quantidade</label>
+                        <input type="number" id="amount" name="amount" value="" placeholder="Quantidade" step="0.01"/>
+                        <small>Use o sinal - (negativo) para despesas e, (virgula) para casas decímais</small>
+                    </div>
+
+                    <div class="input-group actions">
+                        <label class="sr-only"for="date">Quantidade</label>
+                        <input type="date" id="date" name="date" value=""/>
+                    </div>
+
+                    <div class="input-group actions">
+                        <a href="#" class="button cancel" onclick="Modal.toggle()">Cancelar</a>
+                        <button>Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+
     <footer>
         <p>$high</p>
     </footer>
-
 </body>
-
+    <script src="./scripts/scripts.js"></script>
 </html>

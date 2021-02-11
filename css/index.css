@@ -1,10 +1,12 @@
 /* Goblal */
 :root {
-    --primary-color: #fb7d00;
+    --primary-color: #FF8500;
+    --secondary-color: #FF8900;
     --dark-gray: #4b4e5c;
     --bdark-gray: #353741;
     --income: #12a454;
     --expense: #e92929;
+    --light-expense: #f02020;
 
 }
 
@@ -14,9 +16,24 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 93.75%; /* 16px */
+}
 body {
     background: #f0f2f5;
     font-family: "Roboto", sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:  rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container {
@@ -34,10 +51,61 @@ h2 {
     font-weight: 600;
 }
 
+/* Links and buttons */
+a {
+    color: var(--income);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a:hover {
+    color: #1cd644;
+}
+
+button {
+    width: 100%;
+    height: 50px;
+
+    border: none;
+    color: white;
+
+    background: var(--income);
+
+    padding: 0;
+
+    border-radius: 0.6rem;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1cd644;
+}
+.button.new {
+    display: inline-block;
+    margin-bottom: .8rem;
+}
+
+.button.cancel{
+    color: var(--expense);
+    border-radius:  0.6rem;
+    border: 2px var(--expense) solid;
+    height: 50px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.7;
+}
+
+.button.cancel:hover{
+    opacity: 1;
+}
+
 /* Header */
 header {
-    background: rgb(207,88,4);
-    background: linear-gradient(0deg, rgba(207,88,4,1) 0%, rgba(251,120,0,1) 60%, rgba(251,130,0,1) 100%);
+    background: var(--primary-color);
     padding: 2rem 0rem 5.5rem;
     text-align: center;
 }
@@ -77,6 +145,11 @@ header {
 .card h3{
     font-weight: normal;
     font-size: 1.2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
 }
 
 .card p {
@@ -87,21 +160,40 @@ header {
 }
 
 .card.total {
+    background: var(--secondary-color);
+    color: #fff;
+
+}
+
+.card.total:hover {
     background: var(--primary-color);
     color: #fff;
+    cursor: pointer;
+
 }
 
 /* Table */
+
+#transactions{
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+}
+
 #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
     color: var(--dark-gray);
-    
 }
 
 table thead tr th:first-child,
 table tbody tr td:first-child{
     border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child{
+    border-radius:  0 0.25rem 0.25rem 0;
 }
 
 table th {
@@ -142,6 +234,34 @@ td.expense {
     color: var(--expense);
 }
 
+/* Modal */
+
+.modal-overlay {
+    width: 100%; height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #f0f2f5;
+    padding: 2.4rem;
+
+}
+
 /* Footer */
 
 footer {
@@ -149,4 +269,60 @@ footer {
     background: var(--primary-color);
     padding: 3rem 0 2rem;
     color: #fff;
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Form */
+
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input{
+    border: none;
+    border-radius: 0.2rem;
+
+    padding: 0.8rem;
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: .5;
+    padding: 0.5rem;
+}
+
+.input-group.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
+}
+
+/* Responsive */
+
+@media (min-width: 800px) {
+    html {
+        font-size:87.5%;
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.5fr;
+        gap: 0.5rem;
+    }
 }
