@@ -25,21 +25,21 @@
                     <span>Entradas</span>
                     <img src="./assets/income.svg" alt="Imagem de entradas">
                 </h3>
-                <p id="incomeDisplay">R$ 1350,00</p>
+                <p id="incomeDisplay">R$ 0,00</p>
             </div>
             <div class="card">
                 <h3>
                     <span>Saídas</span>
                     <img src="./assets/expense.svg" alt="Imagem de entradas">
                 </h3>
-                <p id="expenseDisplay">R$ 687,00</p>
+                <p id="expenseDisplay">R$ 0,00</p>
             </div>
-            <div class="card total">
+            <div class="card total" id="cardtotal">
                 <h3>
                     <span>Total</span>
                     <img src="./assets/total.svg" alt="Imagem de entradas">
                 </h3>
-                <p id="totalDisplay">R$ 663,00</p>
+                <p id="totalDisplay">R$ 0,00</p>
             </div>
         </section>
 
@@ -86,7 +86,8 @@
         <div class="modal">
             <div id="form">
                 <h2>Nova Transação</h2>
-                <form action="">
+                <small class="alerterror">Por favor, preencha todos os campos!</small>
+                <form action="" onsubmit="Form.submit(event)">
                     <div class="input-group">
                         <label class="sr-only"for="description">Descrição</label>
                         <input type="text" id="description" name="description" value="" placeholder="Descrição"/>
@@ -104,7 +105,7 @@
                     </div>
 
                     <div class="input-group actions">
-                        <a href="#" class="button cancel" onclick="Modal.toggle()">Cancelar</a>
+                        <a href="#" class="button cancel" onclick="Modal.toggle(), Modal.errortoggleof()">Cancelar</a>
                         <button>Salvar</button>
                     </div>
                 </form>

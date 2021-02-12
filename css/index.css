@@ -160,16 +160,18 @@ header {
 }
 
 .card.total {
-    background: var(--secondary-color);
+    background: var(--income);
     color: #fff;
 
 }
 
 .card.total:hover {
-    background: var(--primary-color);
-    color: #fff;
     cursor: pointer;
 
+}
+
+.card.total.negative{
+    background: var(--expense);
 }
 
 /* Table */
@@ -262,6 +264,20 @@ td.expense {
 
 }
 
+.alerterror {
+    color: var(--light-expense);
+    
+    opacity: 0;
+    visibility: hidden;
+}
+
+.alerterror.active{
+    color: var(--light-expense);
+
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Footer */
 
 footer {
@@ -270,7 +286,7 @@ footer {
     padding: 3rem 0 2rem;
     color: #fff;
 
-    left: 0;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -325,4 +341,9 @@ input{
         grid-template-columns: 1fr 1fr 1.5fr;
         gap: 0.5rem;
     }
+
+    footer {
+        position: fixed;
+    }
+
 }
