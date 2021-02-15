@@ -19,10 +19,10 @@
 
     <main class="container">
 
-        <nav class="abovemenu">
+        <nav class="abovemenu" style="grid-template-columns: 1fr 2fr 1fr; ">
             <h2 class="sr-only">Menu</h2>
-            <div class="menubutton">
-                <h3 >
+            <div class="menubutton" onclick="document.location='index.html'">
+                <h3>
                     <img class="menuimage" src="./assets/home.svg" alt="Homepage">
                     <span>Home</span>
                 </h3>
@@ -41,84 +41,63 @@
             </div>
         </nav>
 
-        <section id="balance">
-            <h2 class="sr-only">Balanço</h2>
-            <div class="card">
+        <section id="auto">
                 <h3>
-                    <span>Entradas</span>
-                    <img src="./assets/income.svg" alt="Imagem de entradas">
+                    Transações Automáticas
+                    <a href="#" class="button new" onclick="Modal.toggle()">+ Nova Transação Automática</a>
                 </h3>
-                <p id="incomeDisplay">R$ 0,00</p>
-            </div>
-            <div class="card">
-                <h3>
-                    <span>Saídas</span>
-                    <img src="./assets/expense.svg" alt="Imagem de entradas">
-                </h3>
-                <p id="expenseDisplay">R$ 0,00</p>
-            </div>
-            <div class="card total" id="cardtotal">
-                <h3>
-                    <span>Total</span>
-                    <img src="./assets/total.svg" alt="Imagem de entradas">
-                </h3>
-                <p id="totalDisplay">R$ 0,00</p>
-            </div>
-        </section>
+            <section id="AutoTransations">
+                <div class="card-auto income">
+                    <img src="./assets/auto.svg" alt="Imagem de Automação de Transações">
+                    <div class="card-footer">
+                        <span>
+                            Salário
+                            <br> 
+                            <small>Dia 10</small> 
+                        </span>
+                        <img class="excludauto" src="./assets/exclud.svg" alt="Imagem de exclusão">
+                    </div>
+                </div>
+            </section>
 
-        <section id="transactions">
-
-            <a href="#" class="button new" onclick="Modal.toggle()">+ Nova Transação</a>
-
-            <h2 class="sr-only">Transações</h2>
-
-            <table id="data-table">
-                <thead>
-                    <tr>
-                        <th>Descrição</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
         </section>
     </main>
 
     <div class="modal-overlay">
         <div class="modal">
-            <div id="form">
-                <h2>Nova Transação</h2>
+            <div class="form">
+                <h2>Nova Transação Automática</h2>
                 <small class="alerterror">Por favor, preencha todos os campos!</small>
-                <form action="" onsubmit="Form.submit(event)" autocomplete="off">
+                <form action="">
                     <div class="input-group">
-                        <label class="sr-only"for="description">Descrição</label>
-                        <input type="text" id="description" name="description" value="" placeholder="Descrição"/>
+                        <label for="Transation-Name" class="sr-only">Nome Transação Automática</label>
+                        <input type="text" id="Transation-Name" placeholder="Nome Transação Automática">
                     </div>
-                    
+
                     <div class="input-group">
-                        <label class="sr-only"for="amount">Quantidade</label>
-                        <input type="number" id="amount" name="amount" value="" placeholder="Valor" step="0.01"/>
+                        <label for="Transation-Amout" class="sr-only">Valor da Transação Automática</label>
+                        <input type="number" id="Transation-Amout" name="Transation-Amout" value="" placeholder="Valor da Transação Automática" step="0.01"/>
                         <small>Use o sinal - (negativo) para despesas e, (virgula) para casas decímais</small>
                     </div>
 
                     <div class="input-group actions">
-                        <label class="sr-only"for="date">Data</label>
-                        <input type="date" id="date" name="date" value=""/>
+                        <label class="sr-only"for="date">Data da Transação</label>
+                        <input type="number" id="Transation-Date" name="Transation-Date" value="" max="31" min="1" placeholder="Dia da Transação Automática"/>
                     </div>
 
                     <div class="input-group actions">
                         <a href="#" class="button cancel" onclick="Modal.toggle(), Modal.errortoggleof()">Cancelar</a>
                         <button>Salvar</button>
                     </div>
+
                 </form>
             </div>
-        </div>  
+        </div>
     </div>
-        <script src="./scripts/scripts.js"></script>
+
     <footer>
+
     </footer>
 </body>
+    <script src="./scripts/scripts.js"></script>
 </html>
