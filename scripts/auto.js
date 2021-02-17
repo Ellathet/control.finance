@@ -34,7 +34,6 @@ const Transaction = {
 
     remove(index){
         Transaction.all.splice(index, 1)
-
         App.reload()
     }
 }

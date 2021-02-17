@@ -153,6 +153,7 @@ const Utils = {
 
     formatDate(date) {
         const splittedDate = date.split("-")
+
         return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
     }
 
@@ -180,7 +181,7 @@ const Form = {
     },
 
     formatValues() {
-        let { description, amount, date } = Form.getValues()
+        let { description, amount, date } = Form.getValues() 
 
             amount = Utils.formatAmount(amount)
 
@@ -217,43 +218,81 @@ const Form = {
 }
 
 const AutoTransations = {
-   Confirm() {
-    const d = new Date(Date.now())
-    const da = Number(new Intl.DateTimeFormat('pt-br', { day: '2-digit' }).format(d));
 
-    const Array = Storage.Autoget()
-    
-    const indexOfDay = Array.reduce((acc, obj, index) =>{
-        if(obj.day === da){
-            acc.push(index);
-        }
+    Convert(array, index) {
 
-        return acc;
-    }, [])
+        const d = new Date(Date.now());
 
-    console.log('Resultados', indexOfDay)
+                const ye = new Intl.DateTimeFormat('pt-br', { year: 'numeric' }).format(d);
+                const mo = new Intl.DateTimeFormat('pt-br', { month: '2-digit' }).format(d).toUpperCase();
+                const da = new Intl.DateTimeFormat('pt-br', { day: '2-digit' }).format(d);
+
+            let date = `${ye}-${mo}-${da}`
+                date = Utils.formatDate(date)
+
+                amount = array.amount
+                description= array.name
+
+        return {
+
+            description,
+            amount,
+            date,
+        }  
+
    },
+
+    Confirm() {
+
+        const d = new Date(Date.now())
+        const da = Number(new Intl.DateTimeFormat('pt-br', { day: '2-digit' }).format(d));
+    
+        const Array = Storage.Autoget()
+        
+        const indexOfDay = Array.reduce((acc, obj, index) =>{
+            if(obj.day === da){
+                acc.push(index);
+            }
+    
+            return acc;
+        }, [])
+    
+        const NewArray = indexOfDay.map((item) => Array [item]);
+
+        let transactions = []
+
+        NewArray.forEach((transaction, index)=> {
+            transactions.push(AutoTransations.Convert(transaction, index))   
+        })
+
+        return transactions
+
+    }
 }
 
 const App = {
     init() {
     
-        AutoTransations.Confirm()
+        /* Transaction.all.concat(AutoTransations.Confirm() */
+
+        console.log(AutoTransations.Confirm())
         Transaction.all.forEach(DOM.addTransaction)
         
+    
         DOM.updateBalance()
 
         Storage.set(Transaction.all)
-
-        
         
     },
     reload() {
+
         document.querySelector(".alerterror").classList.remove("active")
         DOM.clearTransactions()
+
         App.init()
     }
 }
+
 
 App.init()
 
