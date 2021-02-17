@@ -47,42 +47,31 @@
                     <a href="#" class="button new" onclick="Modal.toggle()">+ Nova Transação Automática</a>
                 </h3>
             <section id="AutoTransations">
-                <div class="card-auto income">
-                    <img src="./assets/auto.svg" alt="Imagem de Automação de Transações">
-                    <div class="card-footer">
-                        <span>
-                            Salário
-                            <br> 
-                            <small>Dia 10</small> 
-                        </span>
-                        <img class="excludauto" src="./assets/exclud.svg" alt="Imagem de exclusão">
-                    </div>
-                </div>
-            </section>
 
+            </section>
         </section>
     </main>
 
     <div class="modal-overlay">
         <div class="modal">
+            <h2>Nova Transação Automática</h2>
+            <small class="alerterror">Por favor, preencha todos os campos!</small>
             <div class="form">
-                <h2>Nova Transação Automática</h2>
-                <small class="alerterror">Por favor, preencha todos os campos!</small>
-                <form action="">
+                <form action="" onsubmit="Form.submit(event)">
                     <div class="input-group">
                         <label for="Transation-Name" class="sr-only">Nome Transação Automática</label>
                         <input type="text" id="Transation-Name" placeholder="Nome Transação Automática">
                     </div>
 
                     <div class="input-group">
-                        <label for="Transation-Amout" class="sr-only">Valor da Transação Automática</label>
-                        <input type="number" id="Transation-Amout" name="Transation-Amout" value="" placeholder="Valor da Transação Automática" step="0.01"/>
+                        <label for="Transation-Amount" class="sr-only">Valor da Transação Automática</label>
+                        <input type="number" id="Transation-Amount" name="Transation-Amout" value="" placeholder="Valor da Transação Automática" step="0.01"/>
                         <small>Use o sinal - (negativo) para despesas e, (virgula) para casas decímais</small>
                     </div>
 
                     <div class="input-group actions">
-                        <label class="sr-only"for="date">Data da Transação</label>
-                        <input type="number" id="Transation-Date" name="Transation-Date" value="" max="31" min="1" placeholder="Dia da Transação Automática"/>
+                        <label class="sr-only" for="Transation-Day">Data da Transação</label>
+                        <input type="number" id="Transation-Day" name="Transation-Day" value="" max="31" min="1" placeholder="Dia da Transação Automática"/>
                     </div>
 
                     <div class="input-group actions">
@@ -99,5 +88,5 @@
 
     </footer>
 </body>
-    <script src="./scripts/scripts.js"></script>
+    <script src="./scripts/auto.js"></script>
 </html>
