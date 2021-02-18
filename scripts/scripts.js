@@ -219,19 +219,18 @@ const Form = {
 
 const AutoTransations = {
 
-    Convert(array, index) {
+    Convert(array) {
 
         const d = new Date(Date.now());
 
-                const ye = new Intl.DateTimeFormat('pt-br', { year: 'numeric' }).format(d);
-                const mo = new Intl.DateTimeFormat('pt-br', { month: '2-digit' }).format(d).toUpperCase();
-                const da = new Intl.DateTimeFormat('pt-br', { day: '2-digit' }).format(d);
+        const ye = new Intl.DateTimeFormat('pt-br', { year: 'numeric' }).format(d);
+        const mo = new Intl.DateTimeFormat('pt-br', { month: '2-digit' }).format(d).toUpperCase();
+        const da = new Intl.DateTimeFormat('pt-br', { day: '2-digit' }).format(d);
 
-            let date = `${ye}-${mo}-${da}`
-                date = Utils.formatDate(date)
-
-                amount = array.amount
-                description= array.name
+            date = `${ye}-${mo}-${da}`;
+            date = Utils.formatDate(date);
+            amount = array.amount;
+            description= array.name;
 
         return {
 
@@ -244,38 +243,77 @@ const AutoTransations = {
 
     Confirm() {
 
-        const d = new Date(Date.now())
-        const da = Number(new Intl.DateTimeFormat('pt-br', { day: '2-digit' }).format(d));
-    
+        const day = (24 * 60 * 60 * 1000);
+
+        const search = name => {
+            return document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + name.replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1") || false
+        }
+
+        const timereturn = t => {
+            if (typeof t === "number") {
+                let d = new Date()
+                d.setMilliseconds(d.getMilliseconds() + t * day)
+                return d.toString()
+            }
+        }
+
+        const arrayargs = () => {
+
+        const da = Number(new Intl.DateTimeFormat('pt-br', {day: '2-digit'}).format(new Date(Date.now())))
+
         const Array = Storage.Autoget()
         
         const indexOfDay = Array.reduce((acc, obj, index) =>{
-            if(obj.day === da){
-                acc.push(index);
-            }
-    
+                if(obj.day === da){
+                    acc.push(index);
+                }
+        
             return acc;
-        }, [])
-    
-        const NewArray = indexOfDay.map((item) => Array [item]);
+            }, [])
+        
+            const NewArray = indexOfDay.map((item) => Array [item]);
 
-        let transactions = []
+            return { 
+                array: NewArray,
+                id: NewArray.map((obj) => obj.id),
+            }
+        }
 
+        const payment = (NewArray) => {
+ 
         NewArray.forEach((transaction, index)=> {
-            transactions.push(AutoTransations.Convert(transaction, index))   
+
+            Transaction.all.push(AutoTransations.Convert(transaction, index))   
         })
+    }
 
-        return transactions
+        const paymentcookie= search(`payment`),
 
+            tsnow = Date.now()
+        if(paymentcookie) {
+            if(Number(paymentcookie) + day > tsnow){
+            //Não se passou 30 dias
+                return
+            }
+            //Já passou 30 dias
+
+                payment(arrayargs().array)
+                document.cookie = `payment=${tsnow}; expires=${timereturn(30)}`
+
+
+        }else {
+            //criar cookie
+
+                payment(arrayargs().array)
+                document.cookie = `payment=${tsnow}; expires=${timereturn(30)}`
+
+        }
     }
 }
 
 const App = {
     init() {
-    
-        /* Transaction.all.concat(AutoTransations.Confirm() */
-
-        console.log(AutoTransations.Confirm())
+        AutoTransations.Confirm()
         Transaction.all.forEach(DOM.addTransaction)
         
     

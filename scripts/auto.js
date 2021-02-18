@@ -20,6 +20,13 @@ const Storage = {
     },
     set(transactions){
         localStorage.setItem("high.finances:autotransactions", JSON.stringify(transactions))
+    },
+
+    setid(id){
+        localStorage.setItem("high.finances:autotransactionsid", 0 + id)
+    },
+    getid(){
+        return Number(localStorage.getItem("high.finances:autotransactionsid"))
     }
 }
 
@@ -34,8 +41,9 @@ const Transaction = {
 
     remove(index){
         Transaction.all.splice(index, 1)
+
         App.reload()
-    }
+    },
 }
 
 const DOM = {
@@ -91,7 +99,16 @@ const Utils = {
         value = Number(value)
 
         return value
+    },
+
+    id() {
+        let baseid = 1 + Storage.getid()
+        Storage.setid(baseid)
+
+        return baseid
+
     }
+
 }
 
 const Form = {
@@ -121,8 +138,8 @@ const Form = {
         name = Utils.formatName(name)
         amount = Utils.formatAmount(amount)
         day = Utils.formatDay(day) 
-
-        return { name, amount, day }
+        id = Utils.id()
+        return { name, amount, day, id }
 
     },
 
@@ -141,6 +158,7 @@ const Form = {
             Form.clearFields();
             Modal.toggle()
         } catch (error) {
+            console.error(error)
             document.querySelector(".alerterror").classList.toggle("active")
         }
 
@@ -149,17 +167,18 @@ const Form = {
 
 const App = {
     init() {
-        Transaction.all.forEach((transaction, index) => {
-            DOM.addTransaction(transaction, index)
-        })
+        Transaction.all.forEach(DOM.addTransaction)
 
         Storage.set(Transaction.all)
     }, 
 
     reload(){
+        document.querySelector(".alerterror").classList.remove("active")
         DOM.clearTransactions();
         App.init();
     }
 }
+
+console.log(Storage.getid())
 
 App.init()

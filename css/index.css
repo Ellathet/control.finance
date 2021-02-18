@@ -25,6 +25,11 @@ body {
     height: 100%;
 }
 
+#comming {
+    font-size: 12rem;
+    color: var(--primary-color);
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -184,7 +189,7 @@ header {
 
 .menubutton:hover {
     color: var(--primary-color);
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .menubutton {
