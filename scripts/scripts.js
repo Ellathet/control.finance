@@ -228,7 +228,6 @@ const AutoTransations = {
         const da = new Intl.DateTimeFormat('pt-br', { day: '2-digit' }).format(d);
 
             date = `${ye}-${mo}-${da}`;
-            date = Utils.formatDate(date);
             amount = array.amount;
             description= array.name;
 
